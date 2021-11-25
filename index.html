@@ -39,30 +39,61 @@
     </style>
 </head>
 <body>
-    <button id="classic-button" class="btn" onClick="longAction()">Print delayed log</button>
-    <script>
+    <button id="classic-button-login" class="btn" onClick="login()">
+        Login
+    </button>
+    <button id="classic-button-register" class="btn" onClick="register()">
+        Register
+    </button>
+   
+    <!--CUSTOM ELEMENT  -->
+    <app-button onClick="temp()"></app-button>
+   <script>
 
-        const button = document.querySelector('#classic-button');
-
-        // 2nd way
-        const longAction = () => {
-            console.log(new Date());
-            const originalButtonText = button.textContent;
-            button.textContent = "Loading...";
-            button.setAttribute("disabled", "true")
-            button.classList.add('fading');
-            setTimeout(() => {
-                button.textContent = originalButtonText;
-                button.removeAttribute("disabled")
-                button.classList.remove('fading');
-                console.log("hello console", new Date());
+       
+       const loginButton = document.querySelector('#classic-button-login');
+       
+       const login = () => {
+           const originalButtonText = loginButton.textContent;
+           loginButton.textContent = "Loading...";
+           loginButton.setAttribute("disabled", "true")
+           loginButton.classList.add('fading');
+           setTimeout(() => {
+               loginButton.textContent = originalButtonText;
+               loginButton.removeAttribute("disabled")
+               loginButton.classList.remove('fading');
+               console.log("login response");
             }, 2000)
+        };
+
+        const registerButton = document.querySelector('#classic-button-register');
+ 
+        const register = () => {
+            const originalButtonText = registerButton.textContent;
+            registerButton.textContent = "Loading...";
+            registerButton.setAttribute("disabled", "true")
+            registerButton.classList.add('fading');
+            setTimeout(() => {
+                registerButton.textContent = originalButtonText;
+                registerButton.removeAttribute("disabled")
+                registerButton.classList.remove('fading');
+                console.log("register response");
+            }, 2000)
+        };
+
+        const temp = () => {
+            console.log('temp');
         }
 
-        // 1st way
-        // function longAction(){
-        //     console.log("hello console");
-        // }
+        class Button extends HTMLElement {
+            constructor(){
+                super();
+                // this.innerHTML = "hello"
+                this.innerHTML = '<button class="btn">CUSTOM</button>'
+            }
+        }
+
+        customElements.define("app-button", Button);
 
     </script>
 </body>
