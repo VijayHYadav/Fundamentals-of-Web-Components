@@ -39,15 +39,11 @@
     </style>
 </head>
 <body>
-    <button id="classic-button-login" class="btn" onClick="login()">
-        Login
-    </button>
-    <button id="classic-button-register" class="btn" onClick="register()">
-        Register
-    </button>
-   
-    <!--CUSTOM ELEMENT  -->
-    <app-button onClick="temp()"></app-button>
+    <app-button id="classic-button-login" onClick="login()" text="login"></app-button>
+
+    <app-button id="classic-button-register" onClick="register()" text="register">
+    </app-button>
+
    <script>
 
        
@@ -55,41 +51,59 @@
        
        const login = () => {
            const originalButtonText = loginButton.textContent;
-           loginButton.textContent = "Loading...";
-           loginButton.setAttribute("disabled", "true")
-           loginButton.classList.add('fading');
+           loginButton.setAttribute("inprogress", "true");
+        //    loginButton.textContent = "Loading...";
+        //    loginButton.setAttribute("disabled", "true")
+        //    loginButton.classList.add('fading');
            setTimeout(() => {
-               loginButton.textContent = originalButtonText;
-               loginButton.removeAttribute("disabled")
-               loginButton.classList.remove('fading');
+               loginButton.removeAttribute("inprogress");
+            //    loginButton.textContent = originalButtonText;
+            //    loginButton.removeAttribute("disabled")
+            //    loginButton.classList.remove('fading');
                console.log("login response");
             }, 2000)
         };
 
         const registerButton = document.querySelector('#classic-button-register');
- 
         const register = () => {
-            const originalButtonText = registerButton.textContent;
-            registerButton.textContent = "Loading...";
-            registerButton.setAttribute("disabled", "true")
-            registerButton.classList.add('fading');
+            // const originalButtonText = registerButton.textContent;
+            // registerButton.textContent = "Loading...";
+            registerButton.setAttribute("inprogress", "true");
+            // registerButton.setAttribute("disabled", "true")
+            // registerButton.classList.add('fading');
             setTimeout(() => {
-                registerButton.textContent = originalButtonText;
-                registerButton.removeAttribute("disabled")
-                registerButton.classList.remove('fading');
+                registerButton.removeAttribute("inprogress");
+                // registerButton.textContent = originalButtonText;
+                // registerButton.removeAttribute("disabled")
+                // registerButton.classList.remove('fading');
                 console.log("register response");
             }, 2000)
         };
 
-        const temp = () => {
-            console.log('temp');
-        }
-
         class Button extends HTMLElement {
             constructor(){
                 super();
+                const text = this.getAttribute("text");
                 // this.innerHTML = "hello"
-                this.innerHTML = '<button class="btn">CUSTOM</button>'
+                this.innerHTML = `<button class="btn">${text}</button>`
+            }
+
+            static get observedAttributes(){
+                return ['inprogress']
+            }
+
+            attributeChangedCallback(attribute, oldValue, newValue){
+                // console.log(attribute, oldValue, newValue);
+                const button = this.querySelector('button');
+                if(newValue) {
+                    button.textContent = "Loading...";
+                    button.setAttribute("disabled", "true");
+                    button.classList.add("fading");
+                } else {
+                    button.textContent = this.getAttribute("text");
+                    button.removeAttribute("disabled");
+                    button.classList.remove("fading")
+                }
             }
         }
 
