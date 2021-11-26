@@ -36,56 +36,46 @@
                 color: #6aa8f0;
             }
         }
+        app-button {
+            display: block;
+        }
+        app-counter {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <app-button id="classic-button-login" onClick="login()" text="login"></app-button>
 
-    <app-button id="classic-button-register" onClick="register()" text="register">
-    </app-button>
+    <!-- <app-counter></app-counter> -->
+
+    <app-button text="Add" onclick="add()"></app-button>
+    <app-button text="Remove" onclick="remove()"></app-button>
 
    <script>
 
-       
-       const loginButton = document.querySelector('#classic-button-login');
-       
-       const login = () => {
-           const originalButtonText = loginButton.textContent;
-           loginButton.setAttribute("inprogress", "true");
-        //    loginButton.textContent = "Loading...";
-        //    loginButton.setAttribute("disabled", "true")
-        //    loginButton.classList.add('fading');
-           setTimeout(() => {
-               loginButton.removeAttribute("inprogress");
-            //    loginButton.textContent = originalButtonText;
-            //    loginButton.removeAttribute("disabled")
-            //    loginButton.classList.remove('fading');
-               console.log("login response");
-            }, 2000)
-        };
+        const add = () => {
+            const counter = document.createElement("app-counter");
+            counter.setAttribute("until", "5")
+            document.body.append(counter);
+        }
 
-        const registerButton = document.querySelector('#classic-button-register');
-        const register = () => {
-            // const originalButtonText = registerButton.textContent;
-            // registerButton.textContent = "Loading...";
-            registerButton.setAttribute("inprogress", "true");
-            // registerButton.setAttribute("disabled", "true")
-            // registerButton.classList.add('fading');
-            setTimeout(() => {
-                registerButton.removeAttribute("inprogress");
-                // registerButton.textContent = originalButtonText;
-                // registerButton.removeAttribute("disabled")
-                // registerButton.classList.remove('fading');
-                console.log("register response");
-            }, 2000)
-        };
+        const remove = () => {
+            document.querySelector("app-counter").remove();
+        }
 
         class Button extends HTMLElement {
             constructor(){
                 super();
-                const text = this.getAttribute("text");
-                // this.innerHTML = "hello"
-                this.innerHTML = `<button class="btn">${text}</button>`
+                // 🚫 const text = this.getAttribute("text");
+                // 🚫 this.innerHTML = "hello"
+                // 🚫 this.innerHTML = `<button class="btn">${text}</button>`
+                }
+                
+            connectedCallback(){
+                 const text = this.getAttribute("text");
+
+                 this.innerHTML = "hello"
+                 this.innerHTML = `<button class="btn">${text}</button>`
             }
 
             static get observedAttributes(){
@@ -109,6 +99,46 @@
 
         customElements.define("app-button", Button);
 
+        class Counter extends HTMLElement {
+            constructor() {
+                super();
+                console.log("constructor");
+                this.count = 0;
+                // 🚫this.innerHTML = "Temporary"
+            }
+
+            connectedCallback(){
+                console.log("connected");
+                this.innerHTML = this.count;
+                const until = this.getAttribute("until");
+                this.interval = setInterval(() => {
+                    console.log("interval is running", Date.now());
+                    if(this.count < until) {
+                        this.count += 1;
+                        this.innerHTML = this.count;
+                    } else {
+                        clearInterval(this.interval)
+                    }
+                }, 1000);
+            }
+
+            disconnectedCallback(){
+                console.log("disconnected");
+                clearInterval(this.interval)
+
+            }
+
+            attributeChangedCallback(attribute, oldValue, newVal){
+                console.log("attribute changed");
+            }
+
+            adoptedCallback() {
+                console.log("adopted");
+            }
+
+        }
+
+        customElements.define("app-counter", Counter);
     </script>
 </body>
 </html>
