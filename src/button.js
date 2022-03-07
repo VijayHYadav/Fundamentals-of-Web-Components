@@ -41,13 +41,14 @@ class Button extends HTMLElement {
         // 🚫 const text = this.getAttribute("text");
         // 🚫 this.innerHTML = "hello"
         // 🚫 this.innerHTML = `<button class="btn">${text}</button>`
+        this.attachShadow({mode: "open"});
     }
 
     connectedCallback() {
         const text = this.getAttribute("text");
         // const buttonTemplate = document.querySelector('#button-template');
-        this.appendChild(buttonTemplate.content.cloneNode(true));
-        this.button = this.querySelector("button");
+        this.shadowRoot.appendChild(buttonTemplate.content.cloneNode(true));
+        this.button = this.shadowRoot.querySelector("button");
         this.button.textContent = text;
     }
 

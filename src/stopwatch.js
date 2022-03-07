@@ -1,6 +1,3 @@
-import './button.js';
-import './counter.js';
-
 class StopWatch extends HTMLElement {
     connectedCallback() {
         console.log(customElements.get("app-button"));
