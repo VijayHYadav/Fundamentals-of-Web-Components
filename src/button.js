@@ -1,3 +1,40 @@
+const buttonTemplate = document.createElement("template");
+buttonTemplate.innerHTML = /* html */`
+<style>
+    .btn{
+        background-color: #0070f3;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        padding: 0 2rem;
+        font-family: 'Lucida Sans';
+        box-shadow: 0 4px 14px 0 rgb(0, 118, 255);
+    }
+    .btn:hover{
+        background-color: #539aec;
+    }
+    .btn:disabled{
+        background-color: #6aa8f0;
+    }
+    .fading {
+        animation: fading 0.5s infinite;
+    }
+
+    @keyframes fading {
+        0% {
+            color: #6aa8f0;
+        }
+        50% {
+            color: white;
+        }
+        100% {
+            color: #6aa8f0;
+        }
+    }
+</style>
+<button class="btn">Button Text</button>
+`
+
 class Button extends HTMLElement {
     constructor() {
         super();
@@ -8,7 +45,7 @@ class Button extends HTMLElement {
 
     connectedCallback() {
         const text = this.getAttribute("text");
-        const buttonTemplate = document.querySelector('#button-template');
+        // const buttonTemplate = document.querySelector('#button-template');
         this.appendChild(buttonTemplate.content.cloneNode(true));
         this.button = this.querySelector("button");
         this.button.textContent = text;
