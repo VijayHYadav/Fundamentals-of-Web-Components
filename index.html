@@ -27,6 +27,7 @@
     <app-button text="Add" onclick="add()"></app-button>
     <app-button text="Remove" onclick="remove()"></app-button>
 
+    <app-stopwatch></app-stopwatch>
    <script>
 
         const add = () => {
@@ -45,7 +46,16 @@
         }
 
     </script>
-    <script src="src/button.js"></script>
-    <script src="src/counter.js"></script>
+    <!-- <script src="src/button.js"></script>
+    <script src="src/counter.js"></script> -->
+
+    <!-- 
+        Uncaught DOMException: Failed to execute 'define' on 
+        'CustomElementRegistry': the name "app-button" has already been 
+        used with this registry
+    <script src="src/button.js" type="module"></script>
+    <script src="src/counter.js" type="module"></script> 
+    -->
+    <script src="src/stopwatch.js" type="module"></script>
 </body>
 </html>
