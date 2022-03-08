@@ -57,6 +57,13 @@ class Button extends HTMLElement {
         this.initialValue = this.innerHTML;
         this.shadowRoot.appendChild(buttonTemplate.content.cloneNode(true));
         this.button = this.shadowRoot.querySelector("button");
+        this.button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            this.button.dispatchEvent(new CustomEvent("click-app-button", {
+                bubbles: true,
+                composed: true,
+            }))
+        })
         // this.button.textContent = text;
     }
 

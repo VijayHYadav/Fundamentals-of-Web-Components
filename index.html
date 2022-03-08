@@ -62,10 +62,17 @@
 
 <body class="dark">
 
-    <app-input label="Username"></app-input>
-    <input>
     <app-form></app-form>
+    <!-- <app-button onclick="test()">Test</app-button> -->
     <script>
+        // const test = () => {
+        //     console.log("hello test");
+        // }
+
+        document.addEventListener("click-app-button", (event) => {
+            console.log("clicked the button");
+        })
+
         // document.addEventListener("input", (event) => {
         //     console.log("input event: ",event.target.tagName)
         // })

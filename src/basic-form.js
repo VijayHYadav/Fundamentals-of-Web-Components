@@ -12,6 +12,11 @@ class BasicForm extends HTMLElement {
             <app-input label="Username"></app-input>
             <app-button>Register</app-button>
         `
+
+        // const button = this.shadowRoot.querySelector("app-button");
+        // button.onclick = (event) => {
+        //     console.log("clicked the button inside form")
+        // }
     }
 }
 
