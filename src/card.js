@@ -8,8 +8,12 @@ cardTemplate.innerHTML = /* html */`
         </div>
         <div class="card-body"><slot name="card-body">Card Body</slot></div>
     </div>
+    <style>
+        ::slotted(*) {
+            color: black !important;
+        }
+    </style>
 `;
-
 class Card extends HTMLElement {
     constructor() {
         super();
