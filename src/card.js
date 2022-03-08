@@ -1,13 +1,10 @@
 const cardTemplate = document.createElement("template");
 cardTemplate.innerHTML = /* html */`
-    <style>
-        div {
-            border: 1px solid black;
-        }
-    </style>
-    <div><slot name="card-header">Card Header</slot></div>
-    <div><slot name="card-body">Card Body</slot></div>
-    <div>others will be added here<slot></slot></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <div class="card">
+        <div class="card-header"><slot name="card-header">Card Header</slot></div>
+        <div class="card-body"><slot name="card-body">Card Body</slot></div>
+    </div>
 `;
 
 class Card extends HTMLElement {
