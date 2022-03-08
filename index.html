@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Component</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         /* :root {
             --element-bg-color: lightblue;
@@ -22,6 +24,7 @@
         body {
             padding: 10px;
         }
+
         /* app-button[inprogress]{
             transform: scale(1.1);
             transform-origin: top left;
@@ -39,9 +42,10 @@
             display: none;
         } */
         /* For all element */
-        :not(:defined){
+        :not(:defined) {
             display: none;
         }
+
         /* h1{
             color: red;
         }
@@ -55,64 +59,22 @@
         } */
     </style>
 </head>
+
 <body class="dark">
 
-    <!-- <app-button onclick="add()">Add</app-button>
-    <app-button onclick="remove()">Remove</app-button> -->
 
-    <app-card>
-        <h1 slot="card-header">Header</h1>
-        <!-- <div slot="card-header">
-            <h3>sub header</h3>
-        </div> -->
-        <p slot="card-body">This is the card body</p>
-        <!-- <button>Action</button>
-        <button>otherAction</button> -->
-        <app-button slot="card-body" onclick="switchTheme()">Switch-Theme</app-button>
-    </app-card>
-
-    <!-- <app-stopwatch></app-stopwatch> -->
-   <script>
-
-        const add = () => {
-            const addButton = document.querySelector("app-button");
-            addButton.inprogress = true;
-            setTimeout(() => {
-                const counter = document.createElement("app-counter");
-                counter.setAttribute("until", "5")
-                document.body.append(counter);
-                addButton.inprogress = false;
-            }, 2000)
-        }
-
-        const remove = () => {
-            document.querySelector("app-counter").remove();
-        }
-
-        const switchTheme = () => {
-            if(document.body.classList.contains('dark')) {
-                document.body.classList.remove('dark')
-            } else {
-                document.body.classList.add('dark')
-            }
-        }
-
-        // JS Way
-        const card = document.querySelector("app-card");
-        card.style.display = "none";
-        customElements.whenDefined("app-card").then(() => {
-            card.style.display = "";
-        })
+    <script>
 
     </script>
     <script src="src/button.js"></script>
     <script src="src/counter.js"></script>
     <script src="src/card.js"></script>
 
-<!--     
+    <!--     
     <script src="src/button.js" type="module"></script>
     <script src="src/counter.js" type="module"></script>  -->
-   
+
     <!-- <script src="src/stopwatch.js"></script> -->
 </body>
+
 </html>
