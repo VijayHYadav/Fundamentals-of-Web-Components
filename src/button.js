@@ -81,3 +81,8 @@ class Button extends HTMLElement {
 }
 
 customElements.define("app-button", Button);
+
+// setTimeout(() => {
+//     customElements.define("app-button", Button);
+// }, 2000)
+

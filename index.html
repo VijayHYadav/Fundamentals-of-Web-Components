@@ -22,11 +22,19 @@
         app-counter {
             display: block;
         }
+
+        /* app-card:not(:defined){
+            display: none;
+        } */
+        /* For all element */
+        :not(:defined){
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-    <button type="button" class="btn btn-danger">Danger</button>
+    <!-- <button type="button" class="btn btn-danger">Danger</button> -->
 
     <app-button onclick="add()">Add</app-button>
     <app-button onclick="remove()">Remove</app-button>
@@ -56,6 +64,13 @@
         const remove = () => {
             document.querySelector("app-counter").remove();
         }
+
+        // JS Way
+        const card = document.querySelector("app-card");
+        card.style.display = "none";
+        customElements.whenDefined("app-card").then(() => {
+            card.style.display = "";
+        })
 
     </script>
     <script src="src/button.js"></script>
