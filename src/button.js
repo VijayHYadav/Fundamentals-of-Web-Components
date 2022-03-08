@@ -32,7 +32,7 @@ buttonTemplate.innerHTML = /* html */`
         }
     }
 </style>
-<button class="btn">Button Text</button>
+<button class="btn"><slot>Fallback value</slot></button>
 `
 
 class Button extends HTMLElement {
@@ -41,15 +41,15 @@ class Button extends HTMLElement {
         // 🚫 const text = this.getAttribute("text");
         // 🚫 this.innerHTML = "hello"
         // 🚫 this.innerHTML = `<button class="btn">${text}</button>`
-        this._root = this.attachShadow({mode: "closed"});
+        this.attachShadow({mode: "open"});
     }
 
     connectedCallback() {
-        const text = this.getAttribute("text");
-        // const buttonTemplate = document.querySelector('#button-template');
-        this._root.appendChild(buttonTemplate.content.cloneNode(true));
-        this.button = this._root.querySelector("button");
-        this.button.textContent = text;
+        // const text = this.getAttribute("text");
+        this.initialValue = this.innerHTML;
+        this.shadowRoot.appendChild(buttonTemplate.content.cloneNode(true));
+        this.button = this.shadowRoot.querySelector("button");
+        // this.button.textContent = text;
     }
 
     set inprogress(progress) {
@@ -68,11 +68,12 @@ class Button extends HTMLElement {
         // console.log(attribute, oldValue, newValue);
         // const button = this.querySelector('button');
         if (newValue) {
-            this.button.textContent = "Loading...";
+            this.innerHTML = "Loading...";
             this.button.setAttribute("disabled", "true");
             this.button.classList.add("fading");
         } else {
-            this.button.textContent = this.getAttribute("text");
+            // this.button.textContent = this.getAttribute("text");
+            this.innerHTML = this.initialValue;
             this.button.removeAttribute("disabled");
             this.button.classList.remove("fading")
         }

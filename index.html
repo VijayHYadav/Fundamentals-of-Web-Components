@@ -28,8 +28,16 @@
 
     <button type="button" class="btn btn-danger">Danger</button>
 
-    <app-button text="Add" onclick="add()"></app-button>
-    <app-button text="Remove" onclick="remove()"></app-button>
+    <app-button onclick="add()">Add</app-button>
+    <app-button onclick="remove()">Remove</app-button>
+
+    <app-card>
+        <h1 slot="card-header">Header</h1>
+        <h3 slot="card-header">sub header</h3>
+        <p slot="card-body">This is the card body</p>
+        <button>Action</button>
+        <button>otherAction</button>
+    </app-card>
 
     <!-- <app-stopwatch></app-stopwatch> -->
    <script>
@@ -52,11 +60,12 @@
     </script>
     <script src="src/button.js"></script>
     <script src="src/counter.js"></script>
+    <script src="src/card.js"></script>
 
 <!--     
     <script src="src/button.js" type="module"></script>
     <script src="src/counter.js" type="module"></script>  -->
    
-    <script src="src/stopwatch.js"></script>
+    <!-- <script src="src/stopwatch.js"></script> -->
 </body>
 </html>
