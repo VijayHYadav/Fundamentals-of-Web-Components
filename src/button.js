@@ -14,7 +14,9 @@ buttonTemplate.innerHTML = /* html */`
         color: white;
         border: none;
         border-radius: 7px;
+        font-size: 1.5rem;
         padding: 0 2rem;
+        margin-top: 5px;
         font-family: 'Lucida Sans';
         box-shadow: 0 4px 14px 0 rgb(0, 118, 255);
     }

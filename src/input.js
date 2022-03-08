@@ -71,9 +71,9 @@ class Input extends HTMLElement {
         const label = this.shadowRoot.querySelector("label");
         label.textContent = this.getAttribute("label");
         const input = this.shadowRoot.querySelector("input");
-        
-        const span = this.shadowRoot.querySelector("span");
-        span.textContent = this.getAttribute("help");
+        input.type = this.getAttribute("type")
+        this.span = this.shadowRoot.querySelector("span");
+        this.span.textContent = this.getAttribute("help");
 
         input.addEventListener("input", (event) => {
             input.dispatchEvent(new CustomEvent('app-input', {
@@ -82,6 +82,14 @@ class Input extends HTMLElement {
                 detail: event.target.value
             }))
         })
+    }
+
+    static get observedAttributes() {
+        return ["help"];
+    }
+
+    attributeChangedCallback(attribute, oldValue, newValue) {
+        this.span.textContent = newValue;   
     }
 }
 

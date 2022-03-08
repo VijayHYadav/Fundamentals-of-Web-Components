@@ -8,6 +8,7 @@ cardTemplate.innerHTML = /* html */`
         .card {
             border-radius: 5px;
             border: 1px solid var(--line-color, darkgray);
+            width: fit-content;
         }
         .card-header {
             padding: 5px;
