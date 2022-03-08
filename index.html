@@ -61,23 +61,14 @@
 </head>
 
 <body class="dark">
-
-    <app-form></app-form>
-    <!-- <app-button onclick="test()">Test</app-button> -->
+    <app-input label="Username" help="This cannot be null" validation="valid"></app-input>
+    <!-- <app-form></app-form> -->
     <script>
-        // const test = () => {
-        //     console.log("hello test");
-        // }
 
         document.addEventListener("click-app-button", (event) => {
             console.log("clicked the button");
         })
 
-        // document.addEventListener("input", (event) => {
-        //     console.log("input event: ",event.target.tagName)
-        // })
-
-        // custom EventListener
         document.addEventListener("app-input", (event) => {
             event.stopPropagation();
             console.log("app input event: ", event.target.tagName, event.detail)
