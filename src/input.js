@@ -21,10 +21,33 @@ class Input extends HTMLElement {
         this.attachShadow({mode:"open"});
     }
 
+    set value(value){
+        console.log("set value")
+        this.setAttribute("value", value)
+    }
+
+    get value() {
+        console.log("get value")
+        return this.getAttribute("value")
+    }
+
     connectedCallback() {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
         const label = this.shadowRoot.querySelector("label");
         label.textContent = this.getAttribute("label");
+        const input = this.shadowRoot.querySelector("input");
+        // Regular event
+        // input.addEventListener("input", (event) => {
+        //     this.value = event.target.value
+        // })
+        // custome event
+        input.addEventListener("input", (event) => {
+            input.dispatchEvent(new CustomEvent('app-input', {
+                bubbles: true,
+                composed: true,
+                detail: event.target.value
+            }))
+        })
     }
 }
 

@@ -63,13 +63,25 @@
 <body class="dark">
 
     <app-input label="Username"></app-input>
+    <input>
+    <app-form></app-form>
     <script>
+        // document.addEventListener("input", (event) => {
+        //     console.log("input event: ",event.target.tagName)
+        // })
+
+        // custom EventListener
+        document.addEventListener("app-input", (event) => {
+            event.stopPropagation();
+            console.log("app input event: ", event.target.tagName, event.detail)
+        })
 
     </script>
-    <script src="src/button.js"></script>
+    <script src="src/button.js" type="module"></script>
     <script src="src/counter.js"></script>
     <script src="src/card.js"></script>
-    <script src="src/input.js"></script>
+    <script src="src/input.js" type="module"></script>
+    <script src="src/basic-form.js" type="module"></script>
 
 </body>
 
